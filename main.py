@@ -157,8 +157,8 @@ tax.ticks(axis='lbr', multiple=25, linewidth=1, fontsize=9)
 
 # 顶点标注（旋转后合理的位置）
 fontsize = 14
-tax.annotate("w(H$_2$O)", (0, 0, scale), ha='center', va='bottom', fontsize=fontsize, fontweight="bold")  # 左下
-tax.annotate("w(KCl)", (0, scale, 0), ha='right', va='top', fontsize=fontsize, fontweight="bold")     # 上顶点
+tax.annotate("w(KCl)", (0, 0, scale), ha='center', va='bottom', fontsize=fontsize, fontweight="bold")  # 左下
+tax.annotate("w(H$_2$O)", (0, scale, 0), ha='right', va='top', fontsize=fontsize, fontweight="bold")     # 上顶点
 tax.annotate("w(NaCl)", (scale, 0, 0), ha='left', va='top', fontsize=fontsize, fontweight="bold")     # 右下
 
 # 去掉默认的边标签
@@ -173,7 +173,7 @@ for i, temp in enumerate(temperatures):
     H2O  = [100 - n - k for n, k in zip(NaCl, KCl)]
 
     # 转换为三元相 (NaCl, KCl, H2O)
-    points = list(zip(NaCl, KCl, H2O))
+    points = list(zip(NaCl, H2O,KCl ))
 
     # 绘制主线
     tax.plot(points, linewidth=2, marker='o', color=colors[i], label=f"{temp}℃")
@@ -184,13 +184,13 @@ for i, temp in enumerate(temperatures):
         eNaCl = eutectic_row['液相NaCl/%'].values[0]
         eKCl  = eutectic_row['液相KCl/%'].values[0]
         eH2O  = 100 - eNaCl - eKCl
-        eutectic = (eNaCl, eKCl, eH2O)
+        eutectic = (eNaCl,eH2O , eKCl)
         tax.scatter([eutectic], marker='o', color=colors[i], s=40)
 
         # 从共饱点连向 NaCl 顶点
         tax.line(eutectic, (100,0,0), linewidth=1, color=colors[i], alpha=0.7)
         # 从共饱点连向 KCl 顶点
-        tax.line(eutectic, (0,100,0), linewidth=1, color=colors[i], alpha=0.7)
+        tax.line(eutectic, (0,0,100), linewidth=1, color=colors[i], alpha=0.7)
 
 # 添加图例
 tax.legend(title="温度",fontsize=9)
