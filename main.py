@@ -5,18 +5,16 @@ from matplotlib import font_manager, rcParams
 from matplotlib.font_manager import FontProperties
 import os
 import ternary
-# 读取 Excel 文件数据，假设文件名为'data.xlsx'，需根据实际文件名修改
-# 若 Excel 文件和代码在同一目录，直接写文件名；否则写完整路径
 df = pd.read_excel('demo.xlsx',header=1)
 # print(df)
 # 提取所有温度值并去重，获取要绘制的温度列表
 if not os.path.exists('output'):
     os.makedirs('output')
-font_path = "font/SimHei.ttf"  # 替换为你的SimHei.ttf实际路径
+font_path = "font/SimHei.ttf"
 my_font = FontProperties(fname=font_path, size=12)
 my_font2 = font_manager.FontProperties(fname=r"font/SimHei.ttf")
-rcParams['font.family'] = my_font2.get_name()   # 让 matplotlib 用这个字体
-rcParams['axes.unicode_minus'] = False         # 解决负号显示成方块的问题
+rcParams['font.family'] = my_font2.get_name()
+rcParams['axes.unicode_minus'] = False
 df['温度/℃'] = df['温度/℃'].ffill()
 temperatures = df[f'温度/℃'].dropna().unique()
 colors = plt.cm.rainbow(np.linspace(0, 1, len(temperatures)))
