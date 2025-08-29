@@ -1,0 +1,5 @@
+pandas>=1.0.0
+matplotlib>=3.0.0
+numpy>=1.18.0
+python-ternary>=1.0.8
+openpyxl
