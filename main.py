@@ -72,8 +72,10 @@ for temp in temperatures:
     plt.title(f"{temp}℃", fontsize=16)
 
     # 显示图形
-    save_path = f"output/{temp}℃相图.png"
-    plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    # save_path = f"output/{temp}℃相图.png"
+    # plt.savefig(save_path, dpi=300, bbox_inches='tight')
+    save_path = f"output/{temp}℃相图.svg"
+    plt.savefig(save_path,format='svg', dpi=300, bbox_inches='tight')
     plt.close()  # 关闭当前图形，释放内存
     print(f"已保存: {save_path}")
 
@@ -137,8 +139,10 @@ plt.grid(True, alpha=0.3, linestyle='--')
 plt.tight_layout()
 
 # 显示整合图形
-integrated_save_path = "output/不同温度下的相图曲线整合.png"
-plt.savefig(integrated_save_path, dpi=300, bbox_inches='tight')
+# integrated_save_path = "output/不同温度下的相图曲线整合.png"
+# plt.savefig(integrated_save_path, dpi=300, bbox_inches='tight')
+integrated_save_path = "output/不同温度下的相图曲线整合.svg"
+plt.savefig(integrated_save_path,format='svg', dpi=300, bbox_inches='tight')
 plt.close()
 print(f"已保存: {integrated_save_path}")
 
@@ -199,6 +203,7 @@ tax.get_axes().axis('off')
 
 plt.tight_layout()
 # plt.show()
-plt.savefig("output/三元相图_含刻度.png", dpi=300, bbox_inches="tight")
+# plt.savefig("output/三元相图_含刻度.png", dpi=300, bbox_inches="tight")
+plt.savefig("output/三元相图_含刻度.svg",format='svg', dpi=300, bbox_inches="tight")
 plt.close()
 print("已保存: output/三元相图_含刻度.png")
